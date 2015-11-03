@@ -1,9 +1,7 @@
-all: hello simplemath fibonacci
+all: complex
 run:
-	echo "Running: hello"
-	./hello
-	./simplemath
-	./fibonacci
+	./complex
+	
 
 clean:
-	rm -f hello hello.o
+	rm -f hello hello.o simplemath fibonacci complex
