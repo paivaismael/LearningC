@@ -2,8 +2,8 @@
 #include<assert.h>
 
 struct complex{
-	float x;
-	float y;
+	long double x;
+	long double y;
 }a,b,c,z;
 
 struct complex mult2(struct complex a,struct complex b){
@@ -24,12 +24,12 @@ struct complex add2(struct complex a,struct complex b){
 }
 
 struct complex juliamap(struct complex z,struct complex c){
-	a=add2(square(z),c);
-	return a;
+	z=add2(square(z),c);
+	return z;
 }
 
 void complex_print(struct complex z){
-	printf("z = &z.x + &z.y i");
+	printf("z=%Lf+%Lfi\n",z.x,z.y);
 }
 
 void test(){
@@ -40,19 +40,21 @@ void test(){
 	c=mult2(a,b);
 	assert(c.x==-4.);
 	assert(c.y==7.);
-	printf("mult2 is working correctly\n");
+	printf("The function mult2 is working correctly.\n");
 	c=square(a);
 	assert(c.x==-3.);
 	assert(c.y==4.);
-	printf("square is working correctly\n");
+	printf("The function square is working correctly.\n");
 	c=add2(a,b);
 	assert(c.x==3.);
 	assert(c.y==5.);
-	printf("add2 is working correctly\n");
+	printf("The function add2 is working correctly.\n");
 	c=juliamap(a,b);
 	assert(c.x==-1.);
 	assert(c.y==7.);
-	printf("juliamap is working correctly\n");
+	printf("The fuction juliamap is working correctly.\n");
+	complex_print(a);
+	printf("If the previous sentence is 'z=1.000000+2.000000i', the function complex_print is working correctly.\n");
 }
 
 int main(){
