@@ -1,7 +1,7 @@
-all: complex
+all: fibonacci
 run:
-	./complex
+	./fibonacci
 	
 
 clean:
-	rm -f hello hello.o simplemath fibonacci complex
+	rm -f fibonacci fibonacci.o
