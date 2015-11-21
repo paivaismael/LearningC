@@ -1,6 +1,6 @@
 all: test_matrix
 
-run: all
+run: 
 	./test_matrix
 
 clean:

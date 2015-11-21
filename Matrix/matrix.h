@@ -1,13 +1,6 @@
 #ifndef __MATRIX_H
 #define __MATRIX_H
 
-// true string type
-#include <string>
-// convert strings to streams with stringstream
-#include <sstream>
-// write files easily as streams
-#include <fstream>
-
 // Most useful standard library implementation of a vector
 #include <vector>
 
@@ -40,16 +33,16 @@ template <typename T> class Matrix {
     Matrix<T> operator+(const Matrix<T>& rhs);
 
     // Defines the * operator between matrices
-    Matrix<T> operator*(const Matrix<T>& rhs);
+    Matrix<T> operator*(Matrix<T>& rhs);
 
     // Defines the * operator between a matrix and a scalar
-    Matrix<T> operator*(const long double& c);
+    Matrix<T> operator*(const T c);
 
     // Defines the + operator between a matrix and a scalar
-    Matrix<T> operator+(const long double& c);
+    Matrix<T> operator+(const T c);
 
-    // Defines the * operator a matrix and a number
-    Matrix<T> operator-(const Matrix<T>& rhs);
+    // Defines the - operator a matrix and a number
+    Matrix<T> operator-(Matrix<T>& rhs);
 
     // Defines the selection operator (i,j) to access elements
     T& operator()(const unsigned int &row, const unsigned int &col);
@@ -58,7 +51,9 @@ template <typename T> class Matrix {
     // Prints matrices
     void print();
 
-    // Saves matrix in a csv file
+    std::string printer();
+
+    // Saves matrix in an external file
     void save(const char* filename);
 
     // Accessors for row and column sizes

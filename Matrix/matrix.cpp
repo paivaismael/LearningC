@@ -4,26 +4,14 @@
 
 // iostream: contains basic io streaming operations (cin, cout, etc.)
 #include <iostream>
+#include <string>
+// convert strings to streams with stringstream
+#include <sstream>
+// write files easily as streams
+#include <fstream>
 
 // include the header declarations
 #include "matrix.h"
-
-//***************
-//
-// PRINTER
-//
-//***************
-
-// Printing a matrix
-template<typename T>
-void Matrix<T>::print(){
-  for (int i=0; i<rows; i++) {
-    for (int j=0; j<cols; j++) {
-      std::cout << mat(i,j) << ", ";
-    }
-    std::cout << std::endl;
-  }
-}
 
 //*************
 //
@@ -61,7 +49,6 @@ template<typename T> Matrix<T>::Matrix(const Matrix<T>& rhs) {
 template<typename T> Matrix<T>::~Matrix() {}
 
 
-
 //*************
 //
 // ACCESSORS
@@ -94,17 +81,11 @@ unsigned int Matrix<T>::get_cols() const {
 }
 
 
-
-
-
 //*********************
 //
 // OPERATOR OVERLOADING
 //
 //*********************
-
-
-
 
 // Assignment operator
 template<typename T>
@@ -158,10 +139,10 @@ Matrix<T> Matrix<T>::operator+(const Matrix<T>& rhs) {
 
 // Multiplication of two matrices
 template<typename T>
-Matrix<T> Matrix<T>::operator*(const Matrix<T>& rhs) {
+Matrix<T> Matrix<T>::operator*(Matrix<T>& rhs) {
   // Create new matrix to store result, initialize to zero
   Matrix result(rows, rhs.get_cols(), 0.0);
-  if(mat.cols==rhs.get_rows()){
+  if(cols==rhs.get_rows()){
     for (unsigned int i=0; i<rows; i++) {
       for (unsigned int j=0; j<rhs.get_cols(); j++) {
         for (unsigned int k=0; k<cols; k++) {
@@ -178,7 +159,7 @@ Matrix<T> Matrix<T>::operator*(const Matrix<T>& rhs) {
 
 // Multiplication a matrix by a scalar
 template<typename T>
-Matrix<T> Matrix<T>::operator*(const long double& c) {
+Matrix<T> Matrix<T>::operator*(const T c) {
   // Create new matrix to store result, initialize to zero
   Matrix result(rows, cols, 0.0);
   for (unsigned int i=0; i<rows; i++) {
@@ -191,7 +172,7 @@ Matrix<T> Matrix<T>::operator*(const long double& c) {
 
 // Addition of a matrix and a scalar
 template<typename T>
-Matrix<T> Matrix<T>::operator+(const long double& c) {
+Matrix<T> Matrix<T>::operator+(const T c) {
   // Create new matrix to store result, initialize to zero
   Matrix result(rows, cols, 0.0);
 
@@ -207,23 +188,48 @@ Matrix<T> Matrix<T>::operator+(const long double& c) {
 
 // Subtraction of two matrices
 template<typename T>
-Matrix<T> Matrix<T>::operator-(const Matrix<T>& rhs) {
+Matrix<T> Matrix<T>::operator-(Matrix<T>& rhs) {
   // Create new matrix to store result, initialize to zero
   Matrix result(rows, cols, 0.0);
 
-  result= mat + rhs * (-1);
+  result= *this + rhs *(T)(-1);
 
   return result;
 }
 
-// Saving the matrix in a CSV file
+
+//***************
+//
+// PRINTERS
+//
+//***************
+
+// Printing a matrix
+template<typename T>
+std::string Matrix<T>::printer(){
+  std::stringstream matrix;
+  for (int i=0; i<rows; i++) {
+    for (int j=0; j<cols; j++) {
+      matrix << this->mat[i][j] << ", ";
+    }
+    matrix << std::endl;
+  }
+  return matrix.str();
+}
+
+template<typename T>
+void Matrix<T>::print(){
+  std::cout << this->printer();
+}
+
+// Saving the matrix in an external file
 template<typename T>
 void Matrix<T>::save(const char* filename){
-  // file handle
+  // file handle*/
   std::ofstream output;
   // open file
   output.open(filename);
-  mat.print();
+  output << this->printer();
   output.close();
 }
 
