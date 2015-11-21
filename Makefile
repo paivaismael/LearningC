@@ -1,7 +1,6 @@
-all: fibonacci
+all: style
 run:
-	./fibonacci
-	
+	./style
 
 clean:
-	rm -f fibonacci fibonacci.o
+	rm -f style style.o
