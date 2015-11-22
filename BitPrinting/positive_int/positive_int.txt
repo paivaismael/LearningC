@@ -1,0 +1,5 @@
+The positive integer numbers are stored in its binary form, i.e., as a sequence of zeros and ones. The code constructed in the file positive_int.c is a 'reverse engineering' of this proccess.
+
+If the number is stored in an N-bit type, then the bigest possible value for it is 2^(N-1)-1, because the first element of the sequence is reserved for the signal (it must be 0 for positive integers).
+
+Due to it, if the number is higher than 2^(N-1)-1, its binary sequence will correspond to the sequence of a negative integer.

@@ -1,4 +1,4 @@
-all: positive_int clean
+all: positive_int
 
 run:
 	./positive_int

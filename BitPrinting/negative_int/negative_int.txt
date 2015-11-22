@@ -1,0 +1,5 @@
+The negative integer numbers are stored in a binary form, i.e., as a sequence of zeros and ones. The code constructed in the file negative_int.c is a 'reverse engineering' of this proccess.
+
+If the integer is casted to an N-bit type, then the bigest possible value for it that will be correctly stored is -2^(N-1)-1, because representations of negative integers numbers must start with 1, because this is a bit reserved to the signal of the number (1 for negatives integers and 0 for positives integers).
+
+Due to it, if you cast a negative integer to an unsigned type, only its module will be stored, and this part will be done in the same way positive integers are stored.
