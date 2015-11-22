@@ -2,10 +2,10 @@
 
 int main()
 {
-	long double n,a,b,c;
+	long double n,a,b,c; // long double type to avoid the negative numbers that were appearing before
 	a=1,b=1;
-	printf("Enter the number of terms\n");
-	scanf("%Lf\n",&n);
+	printf("Enter the number of terms: ");
+	scanf("%Lf",&n);
 
 	printf("The first %d terms of Fibonacci series are:\n",n);
 	printf("%Lf\n",a);
