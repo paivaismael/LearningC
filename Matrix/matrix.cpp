@@ -204,7 +204,7 @@ Matrix<T> Matrix<T>::operator-(Matrix<T>& rhs) {
 //
 //***************
 
-// Printing a matrix
+// Generating a string with the matrix elements in csv format
 template<typename T>
 std::string Matrix<T>::printer(){
   std::stringstream matrix;
@@ -217,18 +217,40 @@ std::string Matrix<T>::printer(){
   return matrix.str();
 }
 
+// Printing a matrix
 template<typename T>
 void Matrix<T>::print(){
   std::cout << this->printer();
 }
 
-// Saving the matrix in an external file
+// Saving the matrix in a csv file
 template<typename T>
-void Matrix<T>::save(const char* filename){
+void Matrix<T>::save(char const* filename){
+  // check if the filename include the extension '.csv'
+  // add the correct extension if it is not included in filename
+  std::string s(filename);
+  std::stringstream ss;
+  if(s.size()>4){
+    std::stringstream ss;
+    for(unsigned int i=0; i<4; ++i){
+      unsigned int j = s.length()-4+i;
+      ss << s.at(j);
+    }
+    if(ss.str()!=".csv"){
+      std::stringstream ss;
+      ss << s << ".csv";
+      s=ss.str();
+    }
+  }
+  else{
+    ss << s << ".csv";
+    s=ss.str();
+  }
+  char const* name = s.c_str();
   // file handle*/
   std::ofstream output;
   // open file
-  output.open(filename);
+  output.open(name);
   output << this->printer();
   output.close();
 }

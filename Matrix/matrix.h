@@ -48,13 +48,14 @@ template <typename T> class Matrix {
     T& operator()(const unsigned int &row, const unsigned int &col);
     const T& operator()(const unsigned int &row, const unsigned int &col) const;
 
+    // Returns a string with the elements of the matrix in csv format
+    std::string printer();
+
     // Prints matrices
     void print();
 
-    std::string printer();
-
-    // Saves matrix in an external file
-    void save(const char* filename);
+    // Saves matrix in a csv file
+    void save(char const* filename);
 
     // Accessors for row and column sizes
     unsigned int get_rows() const;
