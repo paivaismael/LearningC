@@ -1,8 +1,9 @@
-all: matrices multiarrays
+all: test_matrices
+
+test_matrices: matrices.o
 
 run: all
-	./matrices
-	./multiarrays
+	./test_matrices
 
 clean:
-	rm -f matrices multiarrays
+	rm -f test_matrices matrices.o
