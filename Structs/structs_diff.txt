@@ -1,0 +1,7 @@
+The differences between the C and the C++ version of the code:
+
+- When defining a new struct in C++, we do not need to add a typedef in order to have a simpler way to call the struct (as it happens in C). The typedef is already included in the structure definition by default.
+
+- In C++, we can overload a function, i.e., use the same name for more than one function, each one of them receiving at least one different type of input.
+
+- When we want to modify the original variable in C, we use pointers as inputs of the function. Then, when we call the function we put the address of the variable. In C++, we can put the address of the variable as an argument for the function. Then, we can put the variable as an input when we call the function.
