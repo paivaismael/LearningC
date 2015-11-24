@@ -1,9 +1,16 @@
 #include<stdio.h>
 
-typedef struct complex {long double x, y;} COMPLEX;
+typedef long double VALUE;
+typedef struct complex {
+  VALUE x;
+  VALUE y;
+} COMPLEX;
 
-COMPLEX *mult2(const COMPLEX *a,const COMPLEX *b);
-COMPLEX *square(const COMPLEX *a);
-COMPLEX *add2(const COMPLEX *a,const COMPLEX *b);
-COMPLEX *juliamap(const COMPLEX *a,const COMPLEX *b);
-void complex_print(const COMPLEX *a);	
+void set(COMPLEX *c, VALUE a, VALUE b);
+COMPLEX mult2(COMPLEX *a, COMPLEX *b);
+COMPLEX square(COMPLEX *a);
+COMPLEX add2(COMPLEX *a,COMPLEX *b);
+COMPLEX juliamap(COMPLEX *a, COMPLEX *b);
+void complex_print(COMPLEX *a);
+COMPLEX get_result(char *name, COMPLEX *a, COMPLEX *b);
+void assert_function(char *function, COMPLEX *a, COMPLEX *b, VALUE cx, VALUE cy);

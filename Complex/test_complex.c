@@ -1,34 +1,27 @@
 #include<stdio.h>
-#include<assert.h>
 #include"complex.h"
 
-void test(){
-	COMPLEX A,B,*C;
-	A.x=1.;
-	A.y=2.;
-	B.x=2.;
-	B.y=3.;
-	C=mult2(&A,&B);
-	assert(C->x==-4.);
-	assert(C->y==7.);
-	printf("The function mult2 is working correctly.\n");
-	C=square(&A);
-	assert(C->x==-3.);
-	assert(C->y==4.);
-	printf("The function square is working correctly.\n");
-	C=add2(&A,&B);
-	assert(C->x==3.);
-	assert(C->y==5.);
-	printf("The function add2 is working correctly.\n");
-	C=juliamap(&A,&B);
-	assert(C->x==-1.);
-	assert(C->y==7.);
-	printf("The fuction juliamap is working correctly.\n");
-	complex_print(&A);
-	printf("If the previous sentence is 'z=1.000000+2.000000i', the function complex_print is working correctly.\n");
-}
+void test();
 
 int main(){
-	test();
-	return 0;
+  test();
+  return 0;
+}
+
+void test(){
+  COMPLEX A,B;
+  // Setting two vector two test the functions
+  set(&A, 1.0, 2.0);
+  set(&B, 2.0, 3.0);
+  // Testing the fuction mult2 by comparing its result with the result calculated by hand
+  assert_function("mult2", &A, &B, -4.0, 7.0);
+  // Testing the fuction square by comparing its result with the result calculated by hand
+  assert_function("square", &A, &B, -3.0, 4.0);
+  // Testing the fuction add2 by comparing its result with the result calculated by hand
+  assert_function("add2", &A, &B, 3.0, 5.0);
+  // Testing the fuction juliamap by comparing its result with the result calculated by hand
+  assert_function("juliamap", &A, &B, -1.0, 7.0);
+  // Testing the print function (this test requires the user to check what is printed on the screen)
+  complex_print(&A);
+  printf("If the previous sentence is 'z=1.000000+2.000000i', the function complex_print is working correctly.\n");
 }
