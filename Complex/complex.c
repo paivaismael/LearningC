@@ -36,7 +36,12 @@ COMPLEX juliamap(COMPLEX *a, COMPLEX *b){
 
 // Print a complex number
 void complex_print(COMPLEX *a){
-  printf("z=%Lf+%Lfi\n",a->x,a->y);
+  if ((a->y)<0){
+    printf("z=%Lf%Lfi\n",a->x,a->y);
+  }
+  else{
+    printf("z=%Lf+%Lfi\n",a->x,a->y);
+  }
 }
 
 // This is a helper for the next function
@@ -60,7 +65,7 @@ COMPLEX get_result(char *name, COMPLEX *a, COMPLEX *b){
 }
 
 // This is a helper for test files
-// It verifies if the fuctions defined above work correctly and
+// It verifies if the functions defined above work correctly and
 // return a message informing if it is working correctly or not
 void assert_function(char *function, COMPLEX *a, COMPLEX *b, VALUE cx, VALUE cy){
   COMPLEX c;
